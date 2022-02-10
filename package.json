@@ -1,0 +1,30 @@
+{
+  "name": "node-red-contrib-tb-admin-controller",
+  "version": "3.3.3",
+  "description": "Node-RED node for tb-admin-controller",
+  "main": "node.js",
+  "scripts": {
+    "test": "mocha \"test/**/*_spec.js\" --timeout 3000"
+  },
+  "node-red": {
+    "nodes": {
+      "tb-admin-controller": "node.js"
+    }
+  },
+  "keywords": [
+    "node-red",
+    "thingsboard"
+  ],
+  "dependencies": {
+    "q": "1.5.1",
+    "request": "2.88.2",
+    "file-type": "12.1.0"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.0",
+    "node-red": "^1.0.4",
+    "node-red-node-test-helper": "^0.2.3"
+  },
+  "author": "Akash Talole",
+  "license": "Apache License Version 2.0"
+}

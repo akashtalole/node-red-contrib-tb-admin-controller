@@ -1,0 +1,27 @@
+{
+    "TbAdminController": {
+        "label": {
+            "service": "Service",
+            "method": "Method",
+            "host": "Host",
+            "header": "Header",
+            "value": "Value",
+            "isQuery": "isQuery"
+        },
+        "status": {
+            "requesting": "requesting"
+        },
+        "parameters": {
+            "getSecuritySettingsUsingGET": "GET /api/admin/securitySettings",
+            "saveSecuritySettingsUsingPOST": "POST /api/admin/securitySettings",
+            "body": "body",
+            "saveAdminSettingsUsingPOST": "POST /api/admin/settings",
+            "sendTestMailUsingPOST": "POST /api/admin/settings/testMail",
+            "sendTestSmsUsingPOST": "POST /api/admin/settings/testSms",
+            "getAdminSettingsUsingGET": "GET /api/admin/settings/{key}",
+            "key": "key",
+            "checkUpdatesUsingGET": "GET /api/admin/updates",
+            "optionalParameters": "Options"
+        }
+    }
+}

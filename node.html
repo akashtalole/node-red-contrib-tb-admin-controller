@@ -1,0 +1,276 @@
+<script type="text/javascript">
+    RED.nodes.registerType('tb-admin-controller', {
+        category: 'function',
+        color: '#89bf04',
+        defaults: {
+            method: { value: "", required: true },
+            saveSecuritySettingsUsingPOST_body: { value: "" },
+            saveSecuritySettingsUsingPOST_bodyType: { value: "str" },
+            saveAdminSettingsUsingPOST_body: { value: "" },
+            saveAdminSettingsUsingPOST_bodyType: { value: "str" },
+            sendTestMailUsingPOST_body: { value: "" },
+            sendTestMailUsingPOST_bodyType: { value: "str" },
+            sendTestSmsUsingPOST_body: { value: "" },
+            sendTestSmsUsingPOST_bodyType: { value: "str" },
+            getAdminSettingsUsingGET_key: { value: "" },
+            getAdminSettingsUsingGET_keyType: { value: "str" },
+            name: { value: "" }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: 'icon.png',
+        label: function () {
+            return this.name || this.method || "tb-admin-controller";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function () {
+            var selectedMethod = $('#node-input-method option:selected');
+            if (!selectedMethod.val()) {
+                var methods = $('#node-input-method').children();
+                var firstMethod = methods.first();
+                $('#node-input-method').val(firstMethod.val());
+            }
+
+            var showParameters = function () {
+
+                $("#node-input-saveSecuritySettingsUsingPOST_body").typedInput({
+                    default: 'str',
+                    typeField: $("#node-input-saveSecuritySettingsUsingPOST_bodyType"),
+                    types: ['str', 'msg']
+                });
+
+                $("#saveSecuritySettingsUsingPOST_body").hide();
+
+                $("#node-input-saveAdminSettingsUsingPOST_body").typedInput({
+                    default: 'str',
+                    typeField: $("#node-input-saveAdminSettingsUsingPOST_bodyType"),
+                    types: ['str', 'msg']
+                });
+
+                $("#saveAdminSettingsUsingPOST_body").hide();
+
+                $("#node-input-sendTestMailUsingPOST_body").typedInput({
+                    default: 'str',
+                    typeField: $("#node-input-sendTestMailUsingPOST_bodyType"),
+                    types: ['str', 'msg']
+                });
+
+                $("#sendTestMailUsingPOST_body").hide();
+
+                $("#node-input-sendTestSmsUsingPOST_body").typedInput({
+                    default: 'str',
+                    typeField: $("#node-input-sendTestSmsUsingPOST_bodyType"),
+                    types: ['str', 'msg']
+                });
+
+                $("#sendTestSmsUsingPOST_body").hide();
+
+                $("#node-input-getAdminSettingsUsingGET_key").typedInput({
+                    default: 'str',
+                    typeField: $("#node-input-getAdminSettingsUsingGET_keyType"),
+                    types: ['str', 'msg']
+                });
+
+                $("#getAdminSettingsUsingGET_key").hide();
+
+                $("#optional-parameters").hide();
+                $("#optional-parameters-label").hide();
+                if ($("#node-input-method").val() === 'getSecuritySettingsUsingGET') {
+
+                }
+                if ($("#node-input-method").val() === 'saveSecuritySettingsUsingPOST') {
+
+                }
+                if ($("#node-input-method").val() === 'saveAdminSettingsUsingPOST') {
+
+                }
+                if ($("#node-input-method").val() === 'sendTestMailUsingPOST') {
+
+                }
+                if ($("#node-input-method").val() === 'sendTestSmsUsingPOST') {
+
+                }
+                if ($("#node-input-method").val() === 'getAdminSettingsUsingGET') {
+
+                }
+                if ($("#node-input-method").val() === 'checkUpdatesUsingGET') {
+
+                }
+
+                if ($("#optional-parameters").prop('checked')) {
+                    if ($("#node-input-method").val() === 'getSecuritySettingsUsingGET') {
+
+                    }
+                    if ($("#node-input-method").val() === 'saveSecuritySettingsUsingPOST') {
+
+                    }
+                    if ($("#node-input-method").val() === 'saveAdminSettingsUsingPOST') {
+
+                    }
+                    if ($("#node-input-method").val() === 'sendTestMailUsingPOST') {
+
+                    }
+                    if ($("#node-input-method").val() === 'sendTestSmsUsingPOST') {
+
+                    }
+                    if ($("#node-input-method").val() === 'getAdminSettingsUsingGET') {
+
+                        $("#getAdminSettingsUsingGET_key").show();
+                        
+                    }
+                    if ($("#node-input-method").val() === 'checkUpdatesUsingGET') {
+
+                    }
+                } else {
+                    if ($("#node-input-method").val() === 'getSecuritySettingsUsingGET') {
+
+                    }
+                    if ($("#node-input-method").val() === 'saveSecuritySettingsUsingPOST') {
+
+                    }
+                    if ($("#node-input-method").val() === 'saveAdminSettingsUsingPOST') {
+
+                    }
+                    if ($("#node-input-method").val() === 'sendTestMailUsingPOST') {
+
+                    }
+                    if ($("#node-input-method").val() === 'sendTestSmsUsingPOST') {
+
+                    }
+                    if ($("#node-input-method").val() === 'getAdminSettingsUsingGET') {
+
+                        $("#getAdminSettingsUsingGET_key").show();
+                        
+                    }
+                    if ($("#node-input-method").val() === 'checkUpdatesUsingGET') {
+
+                    }
+                }
+            };
+
+            $("#node-input-method").change(function () {
+                showParameters();
+            });
+
+            $("#optional-parameters").change(function () {
+                showParameters();
+            });
+
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="tb-admin-controller">
+
+    <div class="form-row">
+        <label for="node-input-method"><i class="fa fa-tasks"></i> <span data-i18n="TbAdminController.label.method"></span></label>
+        <select id="node-input-method">
+            <option value="getSecuritySettingsUsingGET" data-i18n="TbAdminController.parameters.getSecuritySettingsUsingGET"></option>
+            <option value="saveSecuritySettingsUsingPOST" data-i18n="TbAdminController.parameters.saveSecuritySettingsUsingPOST"></option>
+            <option value="saveAdminSettingsUsingPOST" data-i18n="TbAdminController.parameters.saveAdminSettingsUsingPOST"></option>
+            <option value="sendTestMailUsingPOST" data-i18n="TbAdminController.parameters.sendTestMailUsingPOST"></option>
+            <option value="sendTestSmsUsingPOST" data-i18n="TbAdminController.parameters.sendTestSmsUsingPOST"></option>
+            <option value="getAdminSettingsUsingGET" data-i18n="TbAdminController.parameters.getAdminSettingsUsingGET"></option>
+            <option value="checkUpdatesUsingGET" data-i18n="TbAdminController.parameters.checkUpdatesUsingGET"></option>
+        </select>
+        &nbsp;
+        <input type="checkbox" id="optional-parameters" style="margin-left: 10px; vertical-align: text-bottom; width: auto;">
+        <label for="optional-parameters" id="optional-parameters-label" style="width: auto;"> <span data-i18n="TbAdminController.parameters.optionalParameters"></span></label>
+    </div>
+
+    <div class="form-row" id="saveSecuritySettingsUsingPOST_body">
+        <label for="node-input-saveSecuritySettingsUsingPOST_body"><i class="fa fa-list"></i> <span data-i18n="TbAdminController.parameters.body"></span></label>
+
+        <input type="text" id="node-input-saveSecuritySettingsUsingPOST_body" placeholder="" style="width:70%">
+        <input type="hidden" id="node-input-saveSecuritySettingsUsingPOST_bodyType">
+    </div>
+
+    <div class="form-row" id="saveAdminSettingsUsingPOST_body">
+        <label for="node-input-saveAdminSettingsUsingPOST_body"><i class="fa fa-list"></i> <span data-i18n="TbAdminController.parameters.body"></span></label>
+
+        <input type="text" id="node-input-saveAdminSettingsUsingPOST_body" placeholder="" style="width:70%">
+        <input type="hidden" id="node-input-saveAdminSettingsUsingPOST_bodyType">
+    </div>
+
+    <div class="form-row" id="sendTestMailUsingPOST_body">
+        <label for="node-input-sendTestMailUsingPOST_body"><i class="fa fa-list"></i> <span data-i18n="TbAdminController.parameters.body"></span></label>
+
+        <input type="text" id="node-input-sendTestMailUsingPOST_body" placeholder="" style="width:70%">
+        <input type="hidden" id="node-input-sendTestMailUsingPOST_bodyType">
+    </div>
+
+    <div class="form-row" id="sendTestSmsUsingPOST_body">
+        <label for="node-input-sendTestSmsUsingPOST_body"><i class="fa fa-list"></i> <span data-i18n="TbAdminController.parameters.body"></span></label>
+
+        <input type="text" id="node-input-sendTestSmsUsingPOST_body" placeholder="" style="width:70%">
+        <input type="hidden" id="node-input-sendTestSmsUsingPOST_bodyType">
+    </div>
+
+    <div class="form-row" id="getAdminSettingsUsingGET_key">
+        <label for="node-input-getAdminSettingsUsingGET_key"><i class="fa fa-list"></i> <span data-i18n="TbAdminController.parameters.key"></span></label>
+
+        <input type="text" id="node-input-getAdminSettingsUsingGET_key" placeholder="A string value of the key (e.g. 'general' or 'mail')." style="width:70%">
+        <input type="hidden" id="node-input-getAdminSettingsUsingGET_keyType">
+    </div>
+
+    <hr/>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="node-red:common.label.name"></span></label>
+        <input type="text" id="node-input-name" data-i18n="[placeholder]node-red:common.label.name">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="tb-admin-controller">
+
+    <p> ThingsBoard open-source IoT platform REST API documentation.</p>
+    <p><b>Methods</b></p>
+        <h3>GET /api/admin/securitySettings</h3>
+        <p>Get the Security Settings object that contains password policy, etc.
+
+Available for users with 'SYS_ADMIN' authority.</p>
+        <dl class="message-properties">
+        </dl>
+        <h3>POST /api/admin/securitySettings</h3>
+        <p>Updates the Security Settings object that contains password policy, etc.
+
+Available for users with 'SYS_ADMIN' authority.</p>
+        <dl class="message-properties">
+        <dt>body <span class="property-type"></span></dt>
+        </dl>
+        <h3>POST /api/admin/settings</h3>
+        <p>Creates or Updates the Administration Settings. Platform generates random Administration Settings Id during settings creation. The Administration Settings Id will be present in the response. Specify the Administration Settings Id when you would like to update the Administration Settings. Referencing non-existing Administration Settings Id will cause an error.
+
+Available for users with 'SYS_ADMIN' authority.</p>
+        <dl class="message-properties">
+        <dt>body <span class="property-type"></span></dt>
+        </dl>
+        <h3>POST /api/admin/settings/testMail</h3>
+        <p>Attempts to send test email to the System Administrator User using Mail Settings provided as a parameter. You may change the 'To' email in the user profile of the System Administrator. 
+
+Available for users with 'SYS_ADMIN' authority.</p>
+        <dl class="message-properties">
+        <dt>body <span class="property-type"></span></dt>
+        </dl>
+        <h3>POST /api/admin/settings/testSms</h3>
+        <p>Attempts to send test sms to the System Administrator User using SMS Settings and phone number provided as a parameters of the request. 
+
+Available for users with 'SYS_ADMIN' authority.</p>
+        <dl class="message-properties">
+        <dt>body <span class="property-type"></span></dt>
+        </dl>
+        <h3>GET /api/admin/settings/{key}</h3>
+        <p>Get the Administration Settings object using specified string key. Referencing non-existing key will cause an error.
+
+Available for users with 'SYS_ADMIN' authority.</p>
+        <dl class="message-properties">
+        <dt>key <span class="property-type">string</span></dt>
+        </dl>
+        <h3>GET /api/admin/updates</h3>
+        <p>Check notifications about new platform releases. 
+
+Available for users with 'SYS_ADMIN' authority.</p>
+        <dl class="message-properties">
+        </dl>
+</script>
